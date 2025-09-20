@@ -1,8 +1,7 @@
-package db
+package database
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -10,20 +9,17 @@ import (
 
 var DB *sql.DB
 
-func InitDB() {
-	dsn := "root:@tcp(localhost:3306)/todolist_db" 
-	
+func Connect() {
 	var err error
-	DB, err = sql.Open("mysql", dsn)
+	DB, err = sql.Open("mysql", "root:@tcp(localhost:3306)/todolist_db")
 	if err != nil {
-		log.Fatalf("Gagal membuka koneksi: %v", err)
+		log.Fatal(err)
 	}
 
-	// tes koneksi
 	err = DB.Ping()
 	if err != nil {
-		log.Fatalf("Gagal koneksi ke database: %v", err)
+		log.Fatal(err)
 	}
 
-	fmt.Println("Berhasil koneksi ke database MySQL di localhost!")
+	log.Println("Database terhubung!")
 }
