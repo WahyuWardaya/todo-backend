@@ -32,6 +32,6 @@ func main() {
 	router.PUT("/todos/:id", handlers.UpdateTodo)
 	router.DELETE("/todos/:id", handlers.DeleteTodo)
 
-	log.Println("Server berjalan di http://localhost:8080")
+	log.Println("Server berjalan di http://localhost:8080/todos")
 	router.Run(":8080")
 }
